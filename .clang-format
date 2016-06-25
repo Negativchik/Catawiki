@@ -1,0 +1,8 @@
+---
+BasedOnStyle: LLVM
+PointerBindsToType: false
+ObjCSpaceAfterProperty: true
+ColumnLimit: 120
+IndentWidth: 8
+UseTab: Always
+BreakBeforeBraces: Linux

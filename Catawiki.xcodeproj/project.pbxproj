@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26450E2DC8BCD7421453C96C /* libPods-Catawiki.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADC94A2D7A9175CD8300F15 /* libPods-Catawiki.a */; };
+		7DFDA180BEE32A69922FA9C2 /* libPods-CatawikiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3F896353F4EE51AC0F9EC4 /* libPods-CatawikiTests.a */; };
 		950FCF771D1ECFB100086B52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF761D1ECFB100086B52 /* main.m */; };
 		950FCF7A1D1ECFB100086B52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF791D1ECFB100086B52 /* AppDelegate.m */; };
 		950FCF7D1D1ECFB100086B52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF7C1D1ECFB100086B52 /* ViewController.m */; };
@@ -27,6 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		016CAA0918FAEFCF4BDA9000 /* Pods-CatawikiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatawikiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CatawikiTests/Pods-CatawikiTests.release.xcconfig"; sourceTree = "<group>"; };
+		0ADC94A2D7A9175CD8300F15 /* libPods-Catawiki.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Catawiki.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2453B1CE7CDB4DD045246683 /* Pods-CatawikiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatawikiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatawikiTests/Pods-CatawikiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		55BA8530D4DC51EEDCFAE727 /* Pods-Catawiki.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catawiki.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catawiki/Pods-Catawiki.debug.xcconfig"; sourceTree = "<group>"; };
 		950FCF721D1ECFB100086B52 /* Catawiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catawiki.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		950FCF761D1ECFB100086B52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		950FCF781D1ECFB100086B52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,6 +46,10 @@
 		950FCF8B1D1ECFB100086B52 /* CatawikiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatawikiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		950FCF8F1D1ECFB100086B52 /* CatawikiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatawikiTests.m; sourceTree = "<group>"; };
 		950FCF911D1ECFB100086B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		950FCF9A1D1ED06A00086B52 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		950FCF9B1D1ED0A200086B52 /* .clang-format */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".clang-format"; sourceTree = "<group>"; };
+		EAA3E68C8014EBABEB9B62ED /* Pods-Catawiki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catawiki.release.xcconfig"; path = "Pods/Target Support Files/Pods-Catawiki/Pods-Catawiki.release.xcconfig"; sourceTree = "<group>"; };
+		ED3F896353F4EE51AC0F9EC4 /* libPods-CatawikiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CatawikiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26450E2DC8BCD7421453C96C /* libPods-Catawiki.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,18 +65,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DFDA180BEE32A69922FA9C2 /* libPods-CatawikiTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		722A89782E585DA7E54F64DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55BA8530D4DC51EEDCFAE727 /* Pods-Catawiki.debug.xcconfig */,
+				EAA3E68C8014EBABEB9B62ED /* Pods-Catawiki.release.xcconfig */,
+				2453B1CE7CDB4DD045246683 /* Pods-CatawikiTests.debug.xcconfig */,
+				016CAA0918FAEFCF4BDA9000 /* Pods-CatawikiTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7326C2E7CCE8F3F53E58BEEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0ADC94A2D7A9175CD8300F15 /* libPods-Catawiki.a */,
+				ED3F896353F4EE51AC0F9EC4 /* libPods-CatawikiTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		950FCF691D1ECFB100086B52 = {
 			isa = PBXGroup;
 			children = (
+				950FCF9A1D1ED06A00086B52 /* .gitignore */,
+				950FCF9B1D1ED0A200086B52 /* .clang-format */,
 				950FCF741D1ECFB100086B52 /* Catawiki */,
 				950FCF8E1D1ECFB100086B52 /* CatawikiTests */,
 				950FCF731D1ECFB100086B52 /* Products */,
+				722A89782E585DA7E54F64DB /* Pods */,
+				7326C2E7CCE8F3F53E58BEEC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,9 +154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 950FCF941D1ECFB100086B52 /* Build configuration list for PBXNativeTarget "Catawiki" */;
 			buildPhases = (
+				0B7D6E8EF5846C843302D755 /* [CP] Check Pods Manifest.lock */,
 				950FCF6E1D1ECFB100086B52 /* Sources */,
 				950FCF6F1D1ECFB100086B52 /* Frameworks */,
 				950FCF701D1ECFB100086B52 /* Resources */,
+				1FD5C122E1C7C474C529CE79 /* [CP] Embed Pods Frameworks */,
+				A477BF86AFE9D166792AD4FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,9 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 950FCF971D1ECFB100086B52 /* Build configuration list for PBXNativeTarget "CatawikiTests" */;
 			buildPhases = (
+				182D7884C4E0A001A01368BB /* [CP] Check Pods Manifest.lock */,
 				950FCF871D1ECFB100086B52 /* Sources */,
 				950FCF881D1ECFB100086B52 /* Frameworks */,
 				950FCF891D1ECFB100086B52 /* Resources */,
+				20342725A509D89F50A2985A /* [CP] Embed Pods Frameworks */,
+				C8CA84A4FE5D268EBB852C70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +247,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B7D6E8EF5846C843302D755 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		182D7884C4E0A001A01368BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1FD5C122E1C7C474C529CE79 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catawiki/Pods-Catawiki-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20342725A509D89F50A2985A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CatawikiTests/Pods-CatawikiTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A477BF86AFE9D166792AD4FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catawiki/Pods-Catawiki-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8CA84A4FE5D268EBB852C70 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CatawikiTests/Pods-CatawikiTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		950FCF6E1D1ECFB100086B52 /* Sources */ = {
@@ -339,6 +474,7 @@
 		};
 		950FCF951D1ECFB100086B52 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55BA8530D4DC51EEDCFAE727 /* Pods-Catawiki.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Catawiki/Info.plist;
@@ -350,6 +486,7 @@
 		};
 		950FCF961D1ECFB100086B52 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAA3E68C8014EBABEB9B62ED /* Pods-Catawiki.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Catawiki/Info.plist;
@@ -361,6 +498,7 @@
 		};
 		950FCF981D1ECFB100086B52 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2453B1CE7CDB4DD045246683 /* Pods-CatawikiTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CatawikiTests/Info.plist;
@@ -373,6 +511,7 @@
 		};
 		950FCF991D1ECFB100086B52 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 016CAA0918FAEFCF4BDA9000 /* Pods-CatawikiTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CatawikiTests/Info.plist;
@@ -402,6 +541,7 @@
 				950FCF961D1ECFB100086B52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		950FCF971D1ECFB100086B52 /* Build configuration list for PBXNativeTarget "CatawikiTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +550,7 @@
 				950FCF991D1ECFB100086B52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,11 +11,12 @@
 		7DFDA180BEE32A69922FA9C2 /* libPods-CatawikiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3F896353F4EE51AC0F9EC4 /* libPods-CatawikiTests.a */; };
 		950FCF771D1ECFB100086B52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF761D1ECFB100086B52 /* main.m */; };
 		950FCF7A1D1ECFB100086B52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF791D1ECFB100086B52 /* AppDelegate.m */; };
-		950FCF7D1D1ECFB100086B52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF7C1D1ECFB100086B52 /* ViewController.m */; };
 		950FCF801D1ECFB100086B52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950FCF7E1D1ECFB100086B52 /* Main.storyboard */; };
 		950FCF821D1ECFB100086B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950FCF811D1ECFB100086B52 /* Assets.xcassets */; };
 		950FCF851D1ECFB100086B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950FCF831D1ECFB100086B52 /* LaunchScreen.storyboard */; };
 		950FCF901D1ECFB100086B52 /* CatawikiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF8F1D1ECFB100086B52 /* CatawikiTests.m */; };
+		950FCF9E1D1ED2D100086B52 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCF9D1D1ED2D100086B52 /* GalleryViewController.m */; };
+		950FCFA51D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 950FCFA41D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +38,6 @@
 		950FCF761D1ECFB100086B52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		950FCF781D1ECFB100086B52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		950FCF791D1ECFB100086B52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		950FCF7B1D1ECFB100086B52 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		950FCF7C1D1ECFB100086B52 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		950FCF7F1D1ECFB100086B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		950FCF811D1ECFB100086B52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		950FCF841D1ECFB100086B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +47,10 @@
 		950FCF911D1ECFB100086B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950FCF9A1D1ED06A00086B52 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		950FCF9B1D1ED0A200086B52 /* .clang-format */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".clang-format"; sourceTree = "<group>"; };
+		950FCF9C1D1ED2D100086B52 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryViewController.h; path = ViewControllers/GalleryViewController.h; sourceTree = "<group>"; };
+		950FCF9D1D1ED2D100086B52 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryViewController.m; path = ViewControllers/GalleryViewController.m; sourceTree = "<group>"; };
+		950FCFA31D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicCollectionViewFlowLayout.h; path = ViewControllers/DynamicCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		950FCFA41D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicCollectionViewFlowLayout.m; path = ViewControllers/DynamicCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		EAA3E68C8014EBABEB9B62ED /* Pods-Catawiki.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catawiki.release.xcconfig"; path = "Pods/Target Support Files/Pods-Catawiki/Pods-Catawiki.release.xcconfig"; sourceTree = "<group>"; };
 		ED3F896353F4EE51AC0F9EC4 /* libPods-CatawikiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CatawikiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -117,14 +120,11 @@
 		950FCF741D1ECFB100086B52 /* Catawiki */ = {
 			isa = PBXGroup;
 			children = (
+				950FCFA11D1ED31000086B52 /* Images */,
+				950FCFA01D1ED30500086B52 /* Views */,
+				950FCF9F1D1ED2DB00086B52 /* ViewControllers */,
 				950FCF781D1ECFB100086B52 /* AppDelegate.h */,
 				950FCF791D1ECFB100086B52 /* AppDelegate.m */,
-				950FCF7B1D1ECFB100086B52 /* ViewController.h */,
-				950FCF7C1D1ECFB100086B52 /* ViewController.m */,
-				950FCF7E1D1ECFB100086B52 /* Main.storyboard */,
-				950FCF811D1ECFB100086B52 /* Assets.xcassets */,
-				950FCF831D1ECFB100086B52 /* LaunchScreen.storyboard */,
-				950FCF861D1ECFB100086B52 /* Info.plist */,
 				950FCF751D1ECFB100086B52 /* Supporting Files */,
 			);
 			path = Catawiki;
@@ -133,6 +133,7 @@
 		950FCF751D1ECFB100086B52 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				950FCF861D1ECFB100086B52 /* Info.plist */,
 				950FCF761D1ECFB100086B52 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -145,6 +146,34 @@
 				950FCF911D1ECFB100086B52 /* Info.plist */,
 			);
 			path = CatawikiTests;
+			sourceTree = "<group>";
+		};
+		950FCF9F1D1ED2DB00086B52 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				950FCF9C1D1ED2D100086B52 /* GalleryViewController.h */,
+				950FCF9D1D1ED2D100086B52 /* GalleryViewController.m */,
+				950FCFA31D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.h */,
+				950FCFA41D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		950FCFA01D1ED30500086B52 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				950FCF7E1D1ECFB100086B52 /* Main.storyboard */,
+				950FCF831D1ECFB100086B52 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		950FCFA11D1ED31000086B52 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				950FCF811D1ECFB100086B52 /* Assets.xcassets */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,8 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950FCF7D1D1ECFB100086B52 /* ViewController.m in Sources */,
+				950FCF9E1D1ED2D100086B52 /* GalleryViewController.m in Sources */,
 				950FCF7A1D1ECFB100086B52 /* AppDelegate.m in Sources */,
+				950FCFA51D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.m in Sources */,
 				950FCF771D1ECFB100086B52 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

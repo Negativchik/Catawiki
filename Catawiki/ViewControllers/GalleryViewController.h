@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  GalleryViewController.h
 //  Catawiki
 //
 //  Created by Michael Smirnov on 25.06.16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface GalleryViewController : UICollectionViewController
 
 @end

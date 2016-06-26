@@ -6,8 +6,8 @@
 //  Copyright © 2016 Smirnov. All rights reserved.
 //
 
+#import "FlickrImage.h"
 #import "FlickrSearchEngine.h"
-#import "GalleryImage.h"
 #import <AFNetworking/AFNetworking.h>
 //#import "AFNetworking.h"
 
@@ -27,7 +27,7 @@
 	if (self) {
 		_parseQueue = [[NSOperationQueue alloc] init];
 		_parseQueue.maxConcurrentOperationCount = 1;
-        _manager = [AFHTTPSessionManager manager];
+		_manager = [AFHTTPSessionManager manager];
 	}
 	return self;
 }
@@ -51,7 +51,7 @@
 		@"page" : [NSString stringWithFormat:@"%lu", (unsigned long)pageNumber],
 		@"per_page" : [NSString stringWithFormat:@"%lu", (unsigned long)perPageNumber],
 		@"privacy_filter" : @"1",
-		@"extras" : @"url_s, url_o",
+		@"extras" : @"url_t, url_s, url_l",
 		@"nojsoncallback" : @"1"
 	};
 	NSURLSessionDataTask *dataTask = [self.manager GET:@"https://api.flickr.com/services/rest"
@@ -68,13 +68,13 @@
 				[NSError errorWithDomain:@"com.catawiki.unknownResponse" code:-1000 userInfo:nil];
 			    handler(nil, 0, error);
 		    }
-            self.currentDataTask = nil;
+		    self.currentDataTask = nil;
 	    }
 	    failure:^(NSURLSessionTask *operation, NSError *error) {
 		    NSLog(@"Error: %@", error);
 		    NSLog(@"%@", [operation originalRequest]);
 		    handler(nil, 0, error);
-            self.currentDataTask = nil;
+		    self.currentDataTask = nil;
 	    }];
 	self.currentDataTask = dataTask;
 }
@@ -85,7 +85,7 @@
 	NSBlockOperation *blockOperation = [[NSBlockOperation alloc] init];
 	__weak NSBlockOperation *weakOperation = blockOperation;
 	[blockOperation addExecutionBlock:^{
-		NSMutableArray<GalleryImage *> *images = [NSMutableArray arrayWithCapacity:0];
+		NSMutableArray<FlickrImage *> *images = [NSMutableArray arrayWithCapacity:0];
 		NSUInteger total = 0;
 
 		NSDictionary *photos = dictionary[@"photos"];
@@ -96,15 +96,15 @@
 			NSUInteger thumbnailH = [(NSString *)photo[@"height_s"] integerValue];
 			NSUInteger thumbnailW = [(NSString *)photo[@"width_s"] integerValue];
 
-			NSString *imageURLString = (NSString *)photo[@"url_o"];
-			NSUInteger imageH = [(NSString *)photo[@"height_o"] integerValue];
-			NSUInteger imageW = [(NSString *)photo[@"width_o"] integerValue];
+			NSString *imageURLString = (NSString *)photo[@"url_l"];
+			NSUInteger imageH = [(NSString *)photo[@"height_l"] integerValue];
+			NSUInteger imageW = [(NSString *)photo[@"width_l"] integerValue];
 
-			GalleryImage *image =
-			    [[GalleryImage alloc] initWithThumbnailString:thumbnailURLString
-							    thumbnailSize:CGSizeMake(thumbnailW, thumbnailH)
-							   fullImageStrin:imageURLString
-							    fullImageSize:CGSizeMake(imageH, imageW)];
+			FlickrImage *image =
+			    [[FlickrImage alloc] initWithThumbnailString:thumbnailURLString
+							   thumbnailSize:CGSizeMake(thumbnailW, thumbnailH)
+							  fullImageStrin:imageURLString
+							   fullImageSize:CGSizeMake(imageW, imageH)];
 			[images addObject:image];
 
 			if (weakOperation.isCancelled) {

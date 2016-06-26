@@ -1,14 +1,15 @@
 //
-//  GalleryImage.h
+//  FlickrImage.h
 //  Catawiki
 //
 //  Created by Michael Smirnov on 25.06.16.
 //  Copyright © 2016 Smirnov. All rights reserved.
 //
 
+#import "GalleryImage.h"
 #import <UIKit/UIKit.h>
 
-@interface GalleryImage : NSObject
+@interface FlickrImage : NSObject <GalleryImage>
 
 @property (nonatomic, strong) NSURL *thumbnailURL;
 @property (nonatomic) CGSize thumbnailSize;

@@ -6,9 +6,9 @@
 //  Copyright © 2016 Smirnov. All rights reserved.
 //
 
-#import "GalleryImage.h"
+#import "FlickrImage.h"
 
-@implementation GalleryImage
+@implementation FlickrImage
 
 - (instancetype)initWithThumbnailString:(NSString *)thumbnailString
 			  thumbnailSize:(CGSize)thumbnailSize

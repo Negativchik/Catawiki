@@ -9,16 +9,19 @@
 #import "Constants.h"
 #import "DynamicCollectionViewFlowLayout.h"
 #import "FlickrSearchEngine.h"
+#import "GalleryImage.h"
 #import "GalleryImageCollectionViewCell.h"
 #import "GalleryViewController.h"
+#import "ImageScrollView.h"
+#import "ImageViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-static CGFloat const kCellSpacing = 4.0;
+static CGFloat const kCellSpacing = 5.0;
 static NSUInteger const kPerPageCount = 90;
 
 @interface GalleryViewController () <UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
-@property (nonatomic, strong) NSMutableArray<GalleryImage *> *images;
+@property (nonatomic, strong) NSMutableArray<id<GalleryImage>> *images;
 @property (nonatomic) NSUInteger totalCount;
 @property (nonatomic, strong) FlickrSearchEngine *searchEngine;
 @property (nonatomic) BOOL loading;
@@ -29,6 +32,7 @@ static NSUInteger const kPerPageCount = 90;
 @implementation GalleryViewController
 
 static NSString *const reuseIdentifier = @"ImageCell";
+static NSString *const imageViewerSegueIdentifier = @"ShowImageViewerSegue";
 
 - (FlickrSearchEngine *)searchEngine
 {
@@ -55,8 +59,7 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	self.searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:kSearchStringKey];
 	self.searchBar.delegate = self;
 	self.searchBar.keyboardAppearance = UIKeyboardAppearanceDark;
-	self.searchBar.showsCancelButton = YES;
-	self.searchBar.tintColor = [UIColor whiteColor];
+	self.searchBar.tintColor = [UIColor colorWithRed:52. / 255 green:170. / 255 blue:220. / 255 alpha:1.];
 	self.navigationItem.titleView = self.searchBar;
 }
 
@@ -90,7 +93,7 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	    searchForImagesWithSearchString:self.searchBar.text
 				       page:++currentPage
 				    perPage:kPerPageCount
-			  completionHandler:^(NSArray<GalleryImage *> *images, NSUInteger total, NSError *error) {
+			  completionHandler:^(NSArray<id<GalleryImage>> *images, NSUInteger total, NSError *error) {
 				  if (error) {
 					  return;
 				  }
@@ -123,6 +126,16 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	}
 }
 
+#pragma mark <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	id<GalleryImage> image = self.images[indexPath.row];
+
+	ImageViewController *imageViewController = [[ImageViewController alloc] initWithImage:image];
+	[self.navigationController pushViewController:imageViewController animated:YES];
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -148,7 +161,7 @@ static NSString *const reuseIdentifier = @"ImageCell";
 					       alpha:1.0];
 	cell.layer.zPosition = indexPath.row / 3;
 
-	GalleryImage *image = [self.images objectAtIndex:indexPath.row];
+	id<GalleryImage> image = [self.images objectAtIndex:indexPath.row];
 
 	BOOL imageExists = [[SDWebImageManager sharedManager] cachedImageExistsForURL:image.thumbnailURL];
 
@@ -169,15 +182,13 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
-
 #pragma mark <UICollectionViewDelegateFlowLayout>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
 		  layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	GalleryImage *image = self.images[indexPath.row];
+	id<GalleryImage> image = self.images[indexPath.row];
 	CGSize size = image.thumbnailSize;
 	CGFloat ar = size.height / size.width;
 
@@ -188,9 +199,9 @@ static NSString *const reuseIdentifier = @"ImageCell";
 		CGFloat h = floor(ar * w);
 		return CGSizeMake(w, h);
 	}
-	CGSize size1 = [(GalleryImage *)self.images[row * 3] thumbnailSize];
-	CGSize size2 = [(GalleryImage *)self.images[row * 3 + 1] thumbnailSize];
-	CGSize size3 = [(GalleryImage *)self.images[row * 3 + 2] thumbnailSize];
+	CGSize size1 = [(id<GalleryImage>)self.images[row * 3] thumbnailSize];
+	CGSize size2 = [(id<GalleryImage>)self.images[row * 3 + 1] thumbnailSize];
+	CGSize size3 = [(id<GalleryImage>)self.images[row * 3 + 2] thumbnailSize];
 
 	CGFloat ar1 = size1.height / size1.width;
 	CGFloat ar2 = size2.height / size2.width;
@@ -225,11 +236,18 @@ static NSString *const reuseIdentifier = @"ImageCell";
 
 #pragma mark <UISearchBarDelegate>
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+	[self.searchBar setShowsCancelButton:YES animated:YES];
+}
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
 	if ([searchBar.text isEqualToString:@""]) {
 		searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:kSearchStringKey];
 	}
+
+	[self.searchBar setShowsCancelButton:NO animated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -238,6 +256,7 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	[self.searchBar resignFirstResponder];
 	[self.collectionView setContentOffset:CGPointMake(0, -self.collectionView.contentInset.top) animated:YES];
 	[[NSUserDefaults standardUserDefaults] setObject:self.searchBar.text forKey:kSearchStringKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar

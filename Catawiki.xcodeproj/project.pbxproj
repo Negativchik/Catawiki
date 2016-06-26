@@ -54,6 +54,7 @@
 		950FCFA41D1ED58E00086B52 /* DynamicCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicCollectionViewFlowLayout.m; path = ViewControllers/DynamicCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		9562746C1D1FD7BF00F7FA96 /* GalleryImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryImageCollectionViewCell.h; path = Views/GalleryImageCollectionViewCell.h; sourceTree = "<group>"; };
 		9562746D1D1FD7BF00F7FA96 /* GalleryImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryImageCollectionViewCell.m; path = Views/GalleryImageCollectionViewCell.m; sourceTree = "<group>"; };
+		9562746F1D2003E200F7FA96 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		95A492361D1F25120024BCB8 /* GalleryImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryImage.h; path = Model/GalleryImage.h; sourceTree = "<group>"; };
 		95A492371D1F25120024BCB8 /* GalleryImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryImage.m; path = Model/GalleryImage.m; sourceTree = "<group>"; };
 		95A4923B1D1F28330024BCB8 /* FlickrSearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrSearchEngine.h; path = Network/FlickrSearchEngine.h; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 				950FCF751D1ECFB100086B52 /* Supporting Files */,
 				950FCF9F1D1ED2DB00086B52 /* ViewControllers */,
 				950FCFA01D1ED30500086B52 /* Views */,
+				9562746F1D2003E200F7FA96 /* Constants.h */,
 			);
 			path = Catawiki;
 			sourceTree = "<group>";
@@ -493,7 +495,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -531,7 +533,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -544,6 +546,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Catawiki/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Smirnov.Catawiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,6 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Catawiki/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Smirnov.Catawiki;
 				PRODUCT_NAME = "$(TARGET_NAME)";

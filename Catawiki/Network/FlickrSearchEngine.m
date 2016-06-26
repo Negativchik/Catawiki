@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) NSOperationQueue *parseQueue;
 @property (nonatomic, strong) NSURLSessionDataTask *currentDataTask;
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 @end
 
@@ -26,6 +27,7 @@
 	if (self) {
 		_parseQueue = [[NSOperationQueue alloc] init];
 		_parseQueue.maxConcurrentOperationCount = 1;
+        _manager = [AFHTTPSessionManager manager];
 	}
 	return self;
 }
@@ -40,20 +42,19 @@
 		[self.currentDataTask cancel];
 		_currentDataTask = nil;
 	}
-	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	NSDictionary *parameters = @{
 		@"method" : @"flickr.photos.search",
 		@"api_key" : @"46ca4e6eeacd8cc305db2ec3258a2298",
 		@"tags" : searchString,
 		@"media" : @"photo",
 		@"format" : @"json",
-		@"page" : [NSString stringWithFormat:@"%lu", pageNumber],
-		@"per_page" : [NSString stringWithFormat:@"%lu", perPageNumber],
+		@"page" : [NSString stringWithFormat:@"%lu", (unsigned long)pageNumber],
+		@"per_page" : [NSString stringWithFormat:@"%lu", (unsigned long)perPageNumber],
 		@"privacy_filter" : @"1",
 		@"extras" : @"url_s, url_o",
 		@"nojsoncallback" : @"1"
 	};
-	NSURLSessionDataTask *dataTask = [manager GET:@"https://api.flickr.com/services/rest"
+	NSURLSessionDataTask *dataTask = [self.manager GET:@"https://api.flickr.com/services/rest"
 	    parameters:parameters
 	    progress:nil
 	    success:^(NSURLSessionTask *task, id responseObject) {
@@ -67,11 +68,13 @@
 				[NSError errorWithDomain:@"com.catawiki.unknownResponse" code:-1000 userInfo:nil];
 			    handler(nil, 0, error);
 		    }
+            self.currentDataTask = nil;
 	    }
 	    failure:^(NSURLSessionTask *operation, NSError *error) {
 		    NSLog(@"Error: %@", error);
 		    NSLog(@"%@", [operation originalRequest]);
 		    handler(nil, 0, error);
+            self.currentDataTask = nil;
 	    }];
 	self.currentDataTask = dataTask;
 }
@@ -115,7 +118,7 @@
 			});
 		}
 	}];
-    [self.parseQueue addOperation:blockOperation];
+	[self.parseQueue addOperation:blockOperation];
 }
 
 - (void)cancel

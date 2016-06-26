@@ -6,6 +6,7 @@
 //  Copyright © 2016 Smirnov. All rights reserved.
 //
 
+#import "Constants.h"
 #import "DynamicCollectionViewFlowLayout.h"
 #import "FlickrSearchEngine.h"
 #import "GalleryImageCollectionViewCell.h"
@@ -13,14 +14,15 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 static CGFloat const kCellSpacing = 4.0;
-static NSUInteger const kPerPageCount = 31;
+static NSUInteger const kPerPageCount = 90;
 
-@interface GalleryViewController () <UICollectionViewDelegateFlowLayout>
+@interface GalleryViewController () <UICollectionViewDelegateFlowLayout, UISearchBarDelegate>
 
 @property (nonatomic, strong) NSMutableArray<GalleryImage *> *images;
 @property (nonatomic) NSUInteger totalCount;
 @property (nonatomic, strong) FlickrSearchEngine *searchEngine;
 @property (nonatomic) BOOL loading;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -39,14 +41,30 @@ static NSString *const reuseIdentifier = @"ImageCell";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+
+	[self setupSearchBar];
 	[self reload];
+#if DEBUG
+	[[SDImageCache sharedImageCache] clearDisk];
+#endif
+}
+
+- (void)setupSearchBar
+{
+	self.searchBar = [[UISearchBar alloc] initWithFrame:self.navigationController.navigationBar.bounds];
+	self.searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:kSearchStringKey];
+	self.searchBar.delegate = self;
+	self.searchBar.keyboardAppearance = UIKeyboardAppearanceDark;
+	self.searchBar.showsCancelButton = YES;
+	self.searchBar.tintColor = [UIColor whiteColor];
+	self.navigationItem.titleView = self.searchBar;
 }
 
 - (void)reload
 {
 	self.loading = YES;
 	[self.searchEngine
-	    searchForImagesWithSearchString:@"catawiki"
+	    searchForImagesWithSearchString:self.searchBar.text
 				       page:1
 				    perPage:kPerPageCount
 			  completionHandler:^(NSArray<GalleryImage *> *images, NSUInteger total, NSError *error) {
@@ -69,7 +87,7 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	self.loading = YES;
 	NSUInteger currentPage = self.images.count / kPerPageCount;
 	[self.searchEngine
-	    searchForImagesWithSearchString:@"cat"
+	    searchForImagesWithSearchString:self.searchBar.text
 				       page:++currentPage
 				    perPage:kPerPageCount
 			  completionHandler:^(NSArray<GalleryImage *> *images, NSUInteger total, NSError *error) {
@@ -88,11 +106,17 @@ static NSString *const reuseIdentifier = @"ImageCell";
 			  }];
 }
 
+- (void)didReceiveMemoryWarning
+{
+	[super didReceiveMemoryWarning];
+
+	[[SDImageCache sharedImageCache] clearMemory];
+}
+
 #pragma mark <UIScrollViewDelegate>
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	NSLog(@"%@", NSStringFromCGPoint(self.collectionView.contentOffset));
 	CGSize screenSize = [UIScreen mainScreen].bounds.size;
 	if (self.collectionView.contentOffset.y > self.collectionView.contentSize.height - 3 * screenSize.height) {
 		[self loadMore];
@@ -125,14 +149,21 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	cell.layer.zPosition = indexPath.row / 3;
 
 	GalleryImage *image = [self.images objectAtIndex:indexPath.row];
+
+	BOOL imageExists = [[SDWebImageManager sharedManager] cachedImageExistsForURL:image.thumbnailURL];
+
 	[cell.imageView
 	    sd_setImageWithURL:image.thumbnailURL
 	      placeholderImage:nil
+		       options:SDWebImageRetryFailed
 		     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-			     [UIView animateWithDuration:0.2
-					      animations:^{
-						      cell.imageView.alpha = 1.0;
-					      }];
+			     if (!imageExists) {
+				     cell.imageView.alpha = 0.0;
+				     [UIView animateWithDuration:0.2
+						      animations:^{
+							      cell.imageView.alpha = 1.0;
+						      }];
+			     }
 		     }];
 
 	return cell;
@@ -190,6 +221,29 @@ static NSString *const reuseIdentifier = @"ImageCell";
 	insetForSectionAtIndex:(NSInteger)section
 {
 	return UIEdgeInsetsMake(kCellSpacing, kCellSpacing, kCellSpacing, kCellSpacing);
+}
+
+#pragma mark <UISearchBarDelegate>
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+	if ([searchBar.text isEqualToString:@""]) {
+		searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:kSearchStringKey];
+	}
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	[self reload];
+	[self.searchBar resignFirstResponder];
+	[self.collectionView setContentOffset:CGPointMake(0, -self.collectionView.contentInset.top) animated:YES];
+	[[NSUserDefaults standardUserDefaults] setObject:self.searchBar.text forKey:kSearchStringKey];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:kSearchStringKey];
+	[self.searchBar resignFirstResponder];
 }
 
 @end

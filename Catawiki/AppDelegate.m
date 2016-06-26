@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Override point for customization after application launch.
+
+	if (![[NSUserDefaults standardUserDefaults] objectForKey:kSearchStringKey]) {
+		[[NSUserDefaults standardUserDefaults] setObject:@"catawiki" forKey:kSearchStringKey];
+	}
+
 	return YES;
 }
 

@@ -39,9 +39,7 @@
 
 - (void)commonInit
 {
-	self.sectionInset = UIEdgeInsetsMake(4, 4, 4, 4);
-
-	self.dynamicAnimator = [[UIDynamicAnimator alloc] initWithCollectionViewLayout:self];
+	_dynamicAnimator = [[UIDynamicAnimator alloc] initWithCollectionViewLayout:self];
 	_visibleIndexPathsSet = [NSMutableSet set];
 }
 
@@ -169,6 +167,13 @@
 			[self.dynamicAnimator addBehavior:springBehaviour];
 		}
 	}];
+}
+
+- (void)resetLayout
+{
+    [self.dynamicAnimator removeAllBehaviors];
+    _visibleIndexPathsSet = [NSMutableSet set];
+	[self prepareLayout];
 }
 
 @end

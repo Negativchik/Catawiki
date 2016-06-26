@@ -15,4 +15,6 @@
 @property (nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
 @property (nonatomic, assign) CGFloat scrollResistanceFactor;
 
+- (void)resetLayout;
+
 @end

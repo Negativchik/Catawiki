@@ -73,6 +73,9 @@ static NSString *const imageViewerSegueIdentifier = @"ShowImageViewerSegue";
 			  completionHandler:^(NSArray<GalleryImage *> *images, NSUInteger total, NSError *error) {
 				  self.loading = NO;
 				  if (error) {
+                      [self handleError:error repeatAction:^{
+                          [self reload];
+                      }];
 					  return;
 				  }
 				  self.images = [images mutableCopy];
@@ -95,6 +98,9 @@ static NSString *const imageViewerSegueIdentifier = @"ShowImageViewerSegue";
 				    perPage:kPerPageCount
 			  completionHandler:^(NSArray<id<GalleryImage>> *images, NSUInteger total, NSError *error) {
 				  if (error) {
+                      [self handleError:error repeatAction:^{
+                          [self loadMore];
+                      }];
 					  return;
 				  }
 				  if (self.totalCount != total) {
@@ -107,6 +113,24 @@ static NSString *const imageViewerSegueIdentifier = @"ShowImageViewerSegue";
 				  [(DynamicCollectionViewFlowLayout *)self.collectionViewLayout resetLayout];
 				  self.loading = NO;
 			  }];
+}
+
+- (void)handleError:(NSError *)error repeatAction:(void (^)(void))repeatAction
+{
+	NSLog(@"Error: %@", error);
+
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Something went wrong"
+										 message:nil
+									  preferredStyle:UIAlertControllerStyleAlert];
+	[alertController addAction:[UIAlertAction actionWithTitle:@"Try again"
+							    style:UIAlertActionStyleDefault
+							  handler:^(UIAlertAction *_Nonnull action) {
+								  if (repeatAction) {
+									  repeatAction();
+								  }
+							  }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

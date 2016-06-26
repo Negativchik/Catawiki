@@ -80,15 +80,42 @@
 
 		[_imageScrollView updateImage:thumbnail];
 	}
-	[[SDWebImageManager sharedManager]
-	    downloadImageWithURL:image.fullImageURL
-			 options:SDWebImageRetryFailed
-			progress:nil
-		       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished,
-				   NSURL *imageURL) {
+    [self loadFullImage];
+}
 
-			       [self.imageScrollView updateImage:image];
-		       }];
+- (void)loadFullImage {
+    [[SDWebImageManager sharedManager]
+	    downloadImageWithURL:self.image.fullImageURL
+     options:SDWebImageRetryFailed
+     progress:nil
+     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished,
+                 NSURL *imageURL) {
+         if (error) {
+             [self handleError:error repeatAction:^{
+                 [self loadFullImage];
+             }];
+         } else {
+             [self.imageScrollView updateImage:image];
+         }
+     }];
+}
+
+- (void)handleError:(NSError *)error repeatAction:(void (^)(void))repeatAction
+{
+    NSLog(@"Error: %@", error);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Something went wrong"
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Try again"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *_Nonnull action) {
+                                                          if (repeatAction) {
+                                                              repeatAction();
+                                                          }
+                                                      }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)viewDidLoad
@@ -99,6 +126,8 @@
 	[self.view addSubview:self.imageScrollView];
 
 	[self.view addGestureRecognizer:self.doubleTapGestureRecognizer];
+    
+    self.view.backgroundColor = [UIColor blackColor];
 }
 
 - (void)viewWillLayoutSubviews
